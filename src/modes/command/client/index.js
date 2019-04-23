@@ -14,7 +14,7 @@ export default {
   keydown: event => (isModifierKey(event) ? 'Same' : advanceInputTrie(event)),
   keyup: event => {
     // TODO: decide whether/how to suppress this
-    event.stopImmediatePropagation()
+    // event.stopImmediatePropagation()
     cancelScroll()
     return 'Same'
   },
