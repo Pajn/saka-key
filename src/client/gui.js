@@ -10,16 +10,20 @@ opacity: 1;
 background-color: transparent;
 pointer-events: none;`
 
-document.documentElement.appendChild(guiRoot)
+if (document.documentElement.tagName === 'HTML') {
+  document.documentElement.appendChild(guiRoot)
+}
 
 export function handleFullscreenChange (event) {
   if (SAKA_DEBUG) console.log('fullscreenElement changed')
-  if (document.webkitIsFullScreen) {
-    const fsElement = document.webkitFullscreenElement
-    if (fsElement) {
-      fsElement.appendChild(guiRoot)
+  if (document.documentElement.tagName === 'HTML') {
+    if (document.webkitIsFullScreen) {
+      const fsElement = document.webkitFullscreenElement
+      if (fsElement) {
+        fsElement.appendChild(guiRoot)
+      }
+    } else {
+      document.documentElement.appendChild(guiRoot)
     }
-  } else {
-    document.documentElement.appendChild(guiRoot)
   }
 }
